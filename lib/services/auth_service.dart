@@ -1,9 +1,15 @@
+import 'package:fb_clone/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 class AuthService{
   // Instansiating the Firebase Auth class as a private object _auth
   FirebaseAuth _auth = FirebaseAuth.instance;
+
+
+  User _user;
+
+  User get user => _user;
 
 
 // Firebase Sign-up

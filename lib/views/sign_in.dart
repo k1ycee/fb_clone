@@ -17,6 +17,7 @@ class AuthScreen extends StatelessWidget {
     return ViewModelProvider<AuthViewModel>.withConsumer(
       viewModelBuilder: () => AuthViewModel(),
       builder: (context, model, _) => Scaffold(
+        backgroundColor: Colors.white,
       body: ListView(
         children: <Widget>[
           SizedBox(height: 50,),

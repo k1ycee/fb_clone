@@ -18,7 +18,7 @@ class _WritePostState extends State<WritePost> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
-        height: 150,
+        height: 200,
         width: 250,
         child: TextField(
           maxLines: 100,

@@ -1,6 +1,8 @@
+import 'package:fb_clone/viewmodels/create_post_view_model.dart';
 import 'package:fb_clone/widgets/create_post_text_field.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider_architecture/provider_architecture.dart';
 
 class CreatePost extends StatelessWidget {
 
@@ -8,11 +10,13 @@ class CreatePost extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return ViewModelProvider<CreatePostViewModel>.withConsumer( 
+    viewModelBuilder: () => CreatePostViewModel(),
+    builder: (context, model, child) => SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+          child: ListView(
             children: <Widget>[
               SizedBox(height: 10,),
               Padding(
@@ -21,7 +25,7 @@ class CreatePost extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[ 
                     GestureDetector(onTap: (){print('Undid');},child: Container(height: 40, width: 40, child: Center(child: Icon(Icons.undo, color: Colors.white,),), decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.blue,))),
-                    IconButton(icon: FaIcon(FontAwesomeIcons.paperPlane) , onPressed: (){print('Sent');},iconSize: 30, color: Colors.grey[400],)
+                    IconButton(icon: FaIcon(FontAwesomeIcons.paperPlane) , onPressed: (){model.aPost(postbody: postController.text);},iconSize: 30, color: Colors.grey[400],)
                   ],
                 ),
               ),
@@ -40,11 +44,17 @@ class CreatePost extends StatelessWidget {
                   children: <Widget>[
                     IconButton(icon: FaIcon(FontAwesomeIcons.camera), onPressed: (){print('Chime');}, iconSize: 32, color: Colors.grey[400],)
                 ],),
+              ) ,
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(height: 290, width: 200, decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.grey[100])),
               )
             ],
           ),
         )
       )
+    ),
     );
   }
 }

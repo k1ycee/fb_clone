@@ -1,12 +1,19 @@
+import 'package:fb_clone/constants/route_constants.dart';
+import 'package:fb_clone/locator.dart';
+import 'package:fb_clone/utils/navigator.dart';
 import 'package:fb_clone/widgets/comment_text_field_widget.dart';
 import 'package:flutter/material.dart';
 
 class Posts extends StatelessWidget {
+
   final commentController = TextEditingController();
+  final Navigation nav = locator<Navigation>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -33,7 +40,7 @@ class Posts extends StatelessWidget {
                   height: 45,
                   width: 260,
                   child: CPost(
-                    tapped: (){},
+                    tapped: ()async{nav.navto(CreatePostView);},
                     word: commentController,
                     opt: 'Write Something',
                   )
