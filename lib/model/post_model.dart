@@ -3,8 +3,10 @@ class Poster{
   final String article;
   final String articleImgurl;
   final String articleImgName;
+  final String comment;
+  final int like;
 
-  Poster({this.article, this.articleImgurl, this.articleImgName, this.userId});
+  Poster({this.article, this.articleImgurl, this.articleImgName, this.userId, this.comment, this.like});
 
 
 
@@ -12,6 +14,8 @@ class Poster{
     : article = data["article"],
       articleImgurl = data["articleImgUrl"],
       articleImgName = data["articleImgName"],
+      comment = data["comment"],
+      like = data["like"],
       userId = data["userId"];
 
 
@@ -20,7 +24,9 @@ class Poster{
       'article': article,
       'articleImgUrl': articleImgurl,
       'articleImgName': articleImgName,
-      'userId': userId
+      'userId': userId,
+      'like': like,
+      'comment': comment
     };
   }
 }

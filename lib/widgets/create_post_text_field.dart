@@ -18,8 +18,8 @@ class _WritePostState extends State<WritePost> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: Container(
-        height: 200,
-        width: 250,
+        height: 130,
+        width: 270,
         child: TextField(
           maxLines: 100,
           controller: widget.post,

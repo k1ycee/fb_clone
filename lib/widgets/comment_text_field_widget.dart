@@ -14,17 +14,20 @@ class CPost extends StatefulWidget {
 class _CPostState extends State<CPost> {
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onTap: widget.tapped,
-      textAlign: TextAlign.justify,
-      autocorrect: true,
-      controller: widget.word,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[100]),
-              borderRadius: BorderRadius.circular(30)),
-          labelText: widget.opt,
-          labelStyle: TextStyle(color: Colors.grey[300])),
+    return Container(
+      height: 45,
+      child: TextField(
+        onTap: widget.tapped,
+        textAlign: TextAlign.justify,
+        autocorrect: true,
+        controller: widget.word,
+        decoration: InputDecoration(
+            border: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey[100]),
+                borderRadius: BorderRadius.circular(30)),
+            labelText: widget.opt,
+            labelStyle: TextStyle(color: Colors.grey[300])),
+      ),
     );
   }
 }
