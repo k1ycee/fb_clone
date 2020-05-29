@@ -32,7 +32,7 @@ class ViewerViewModel extends BaseModel{
   Future like(int like)async{
       setBusy(true);
 
-      if(like < 50){
+      if(like != 50){
         var res = await _store.like(Viewer(like: like +=1));
         setBusy(false);
         if(res is String){

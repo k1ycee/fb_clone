@@ -7,6 +7,8 @@ import 'package:fb_clone/model/viewer_model.dart';
 
 class FireStoreService{
 
+  Poster pst;
+
   CollectionReference _posterColl = Firestore.instance.collection('Post');
   CollectionReference _userColl = Firestore.instance.collection('User');
   CollectionReference _viewer = Firestore.instance.collection('Viewer');
@@ -27,7 +29,7 @@ class FireStoreService{
 
   Future like(Viewer like)async{
     try{
-      await _posterColl.document('Post').updateData(like.toJson());
+      await _posterColl.document('Post').updateData({'like': like.like});
     }
     catch(e){
       print(e.toString());
@@ -36,7 +38,7 @@ class FireStoreService{
 
    Future comment(Viewer like)async{
     try{
-      await _posterColl.document('Post').updateData(like.toJson());
+      await _posterColl.document('Post').updateData({'comment': like.comment});
     }
     catch(e){
       print(e.toString());

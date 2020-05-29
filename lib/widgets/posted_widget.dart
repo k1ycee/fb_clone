@@ -22,7 +22,7 @@ class _PostedState extends State<Posted> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
+      height: 550,
       width: 400,
       child: Column(
         children: <Widget>[
