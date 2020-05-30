@@ -14,10 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AuthView,
+      initialRoute: Startup,
       onGenerateRoute: generateRoute,
       navigatorKey: locator<Navigation>().navPersona,
     );
   }
 }
-

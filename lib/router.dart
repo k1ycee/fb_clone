@@ -2,6 +2,7 @@ import 'package:fb_clone/constants/route_constants.dart';
 import 'package:fb_clone/views/create_post.dart';
 import 'package:fb_clone/views/post_view.dart';
 import 'package:fb_clone/views/sign_in.dart';
+import 'package:fb_clone/views/startup.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings){
@@ -22,6 +23,11 @@ Route<dynamic> generateRoute(RouteSettings settings){
         routeName: settings.name,
         viewToShow: AuthScreen(),
       ); 
+    case Startup:
+      return _getRoute(
+        routeName: settings.name,
+        viewToShow: StartUp(),
+      );
 
     default:
       return MaterialPageRoute(
