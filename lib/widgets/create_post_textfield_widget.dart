@@ -21,8 +21,8 @@ class _CPostState extends State<CPost> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
-      width: 400,
+      height: widget.height,
+      width: widget.width,
       child: TextField(
         maxLines: widget.maxlines,
         controller: widget.title,

@@ -42,7 +42,7 @@ class FirestoreService {
     postColl.snapshots().listen((posts) {
       if (posts.documents.isNotEmpty) {
         var post = posts.documents
-            .map((pees) => Post.fromJson(pees.data))
+            .map((pees) => Post.fromJson(pees.data, pees.documentID))
             .
             // where((element) => element !=null).
             toList();
@@ -50,5 +50,14 @@ class FirestoreService {
       }
     });
     return _viewerController.stream;
+  }
+
+  Future like(Post like, String docId)async{
+    try{
+      await postColl.document(docId).updateData({'like' : like.like});
+    }
+    catch(e){
+      print(e.toString());
+    }
   }
 }

@@ -10,6 +10,7 @@ import 'package:provider_architecture/provider_architecture.dart';
 
 class Posts extends StatelessWidget {
   final Navigation nav = locator<Navigation>();
+  final commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class Posts extends StatelessWidget {
                     title: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10.0),
                       child: CPost(
-                        height: 35,
+                        height: 45,
                         width: 200,
                         hint: 'Write Something',
                         tap: () async {
@@ -71,69 +72,103 @@ class Posts extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: model.view.length,
-                    itemBuilder: (context, index) => Posted(
-                      height: 550,
-                      width: 400,
-                      name: Text('Afa Mmadu'),
-                      time: Text('10:00 AM'),
-                      alltext: Text(
-                        model.view[index].postTitle,
-                      ),
-                      leading: FlatButton.icon(
-                          onPressed: () {},
-                          icon: FaIcon(FontAwesomeIcons.heart),
-                          label: Text('0')),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CPost(
-                          height: 20,
-                          width: 120,
-                          hint: 'Comment',
-                          tap: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) => Container(
-                                    margin: EdgeInsets.all(20),
-                                    height: 250,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    )),
-                                    child: model.view[index].comment != null
-                                        ? ListView.builder(
-                                            itemCount: model.view.length,
-                                            itemBuilder: (context, index) =>
-                                                ListTile(
-                                                  leading: CircleAvatar(
-                                                    backgroundColor:
-                                                        Colors.grey[500],
+                Container(
+                  child: model.view != null ?  Expanded(
+                    child: ListView.builder(
+                      itemCount: model.view.length,
+                      itemBuilder: (context, index) => Posted(
+                        height: 550,
+                        width: 400,
+                        name: Text('Afa Mmadu'),
+                        time: Text('10:00 AM'),
+                        alltext: Text(
+                          model.view[index].postTitle,
+                        ),
+                        leading: FlatButton.icon(
+                            onPressed: () {},
+                            icon: FaIcon(FontAwesomeIcons.heart),
+                            label: Text('0')),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CPost(
+                            height: 45,
+                            width: 120,
+                            hint: 'Comment',
+                            tap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => Container(
+                                      height: 300,
+                                      child: model.view[index].comment != null
+                                          ? Container(
+                                              height: 300,
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    child: ListView.builder(
+                                                        itemCount:
+                                                            model.view.length,
+                                                        itemBuilder:
+                                                            (context, index) =>
+                                                                ListTile(
+                                                                  leading:
+                                                                      CircleAvatar(
+                                                                    backgroundColor:
+                                                                        Colors.grey[
+                                                                            500],
+                                                                  ),
+                                                                  title: Text(
+                                                                      'Na this same person'),
+                                                                  subtitle: Text(model
+                                                                      .view[index]
+                                                                      .comment),
+                                                                )),
                                                   ),
-                                                  title: Text(
-                                                      'Na this same person'),
-                                                  subtitle: Text(model
-                                                      .view[index].comment),
-                                                ))
-                                        : Container(
-                                            margin: EdgeInsets.all(20),
-                                            decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              topRight: Radius.circular(20),
-                                            )),
-                                            height: 250,
-                                            child: Center(
-                                              child: Text('No comments :('),
+                                                  CPost(
+                                                    height: 45,
+                                                    width: 120,
+                                                    hint: 'Write Comment',
+                                                    title: commentController,
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          : Container(
+                                            height: 300,
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top: 120.0),
+                                                  child: Text('No comments :('),
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5.0),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    children: <Widget>[
+                                                      CPost(
+                                                        height: 45,
+                                                        width: 300,
+                                                        hint: 'Write Comment',
+                                                        title: commentController,
+                                                      ),
+                                                      IconButton(icon: Icon(Icons.send), onPressed: null, iconSize: 30,)
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           )));
-                          },
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  ),
+                  ) : Container(child: Padding(
+                    padding: const EdgeInsets.only(top: 200.0),
+                    child: Center(child: Text('No posts yet :)'),),
+                  ),),
                 ),
               ],
             ),

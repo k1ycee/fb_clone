@@ -4,15 +4,17 @@ class Post{
   final String postImg;
   final String comment;
   final int like;
+  final String documentId;
 
-  Post({this.userId, this.postTitle, this.postImg, this.comment, this.like});
+  Post({this.userId, this.postTitle, this.postImg, this.comment, this.like = 0, this.documentId});
 
 
-  Post.fromJson(Map<String, dynamic> data)
+  Post.fromJson(Map<String, dynamic> data, String documentId)
     : userId = data["userId"],
       postTitle = data["postTitle"],
       postImg = data["postImg"],
       comment = data["comment"],
+      documentId = documentId,
       like = data["like"];
 
   Map<String, dynamic> toJson(){
@@ -21,7 +23,7 @@ class Post{
       'postTitle': postTitle,
       'postImg': postImg,
       'comment': comment,
-      'like': like
+      'like': like,
     };
   }
 }

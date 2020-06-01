@@ -37,7 +37,7 @@ class CreatePost extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ListTile(
               leading: CircleAvatar(backgroundColor: Colors.grey[300], radius: 23,),
-              title: CPost(height: 300, width: 200,hint: 'Write Something', maxlines: 100, title: postController,),
+              title: CPost(height: 200, width: 200,hint: 'Write Something', maxlines: 100, title: postController,),
               ),
             ),
             Padding(
