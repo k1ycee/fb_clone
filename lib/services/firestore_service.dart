@@ -60,4 +60,13 @@ class FirestoreService {
       print(e.toString());
     }
   }
+  
+  Future comment(Post comment, String docId)async{
+    try{
+      await postColl.document(docId).updateData({'comment' : comment.comment});
+    }
+    catch(e){
+      print(e.toString());
+    }
+  }
 }

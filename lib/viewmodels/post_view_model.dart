@@ -22,4 +22,21 @@ class PostViewModel extends BaseModel {
       setBusy(false);
     });
   }
+
+  Future like(int like, int index) async {
+    setBusy(true);
+    if (like != 50) {
+      _store.like(Post(like: like += 1), _view[index].documentId);
+    } else {
+      return "Thats enough likes now";
+    }
+    setBusy(false);
+  }
+
+  Future comment(String comment, int index) async {
+    setBusy(true);
+
+    _store.like(Post(comment: comment), _view[index].documentId);
+    setBusy(false);
+  }
 }
