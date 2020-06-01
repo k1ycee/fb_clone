@@ -36,7 +36,14 @@ class PostViewModel extends BaseModel {
   Future comment(String comment, int index) async {
     setBusy(true);
 
-    _store.like(Post(comment: comment), _view[index].documentId);
+    var res = _store.comment(Post(comment: comment), _view[index].documentId);
     setBusy(false);
+
+    if (res is String){
+      return "Did not comment bruv";
+    }
+    else{
+      nav.pop();
+    }
   }
 }

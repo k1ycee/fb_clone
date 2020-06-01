@@ -106,40 +106,66 @@ class Posts extends StatelessWidget {
                                             height: 300,
                                             child: model.view[index].comment !=
                                                     null
-                                                ? Container(
-                                                    height: 300,
-                                                    child: Column(
-                                                      children: <Widget>[
-                                                        Expanded(
-                                                          child:
-                                                              ListView.builder(
-                                                                  itemCount: model
-                                                                      .view
-                                                                      .length,
-                                                                  itemBuilder:
-                                                                      (context,
-                                                                              index) =>
-                                                                          ListTile(
-                                                                            leading:
-                                                                                CircleAvatar(
-                                                                              backgroundColor: Colors.grey[500],
-                                                                            ),
-                                                                            title:
-                                                                                Text('Na this same person'),
-                                                                            subtitle:
-                                                                                Text(model.view[index].comment),
-                                                                          )),
-                                                        ),
-                                                        CPost(
-                                                          height: 45,
-                                                          width: 120,
-                                                          hint: 'Write Comment',
-                                                          title:
-                                                              commentController,
-                                                        ),
-                                                      ],
+                                                ? Column(
+                                                  children: <Widget>[
+                                                    Expanded(
+                                                      child:
+                                                          ListView.builder(
+                                                              itemCount: model
+                                                                  .view
+                                                                  .length,
+                                                              itemBuilder:
+                                                                  (context,
+                                                                          index) =>
+                                                                      ListTile(
+                                                                        leading:
+                                                                            CircleAvatar(
+                                                                          backgroundColor: Colors.grey[500],
+                                                                        ),
+                                                                        title:
+                                                                            Text('Na this same person'),
+                                                                        subtitle:
+                                                                            Text(model.view[index].comment == null ? "" : model.view[index].comment),
+                                                                      )),
                                                     ),
-                                                  )
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets
+                                                                  .symmetric(
+                                                              vertical: 3.0,
+                                                              horizontal:
+                                                                  5.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: <Widget>[
+                                                          CPost(
+                                                            height: 46,
+                                                            width: 300,
+                                                            hint:
+                                                                'Write Comment',
+                                                            title:
+                                                                commentController,
+                                                          ),
+                                                          IconButton(
+                                                            icon: Icon(
+                                                                Icons.send),
+                                                            onPressed: () {
+                                                              model.comment(
+                                                                  commentController
+                                                                      .text,
+                                                                  index);
+
+                                                              commentController.clear();
+                                                            },
+                                                            iconSize: 30,
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                )
                                                 : Container(
                                                     height: 300,
                                                     child: Column(
@@ -183,6 +209,8 @@ class Posts extends StatelessWidget {
                                                                       commentController
                                                                           .text,
                                                                       index);
+
+                                                                  commentController.clear();
                                                                 },
                                                                 iconSize: 30,
                                                               )
